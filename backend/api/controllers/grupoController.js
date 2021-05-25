@@ -1,10 +1,23 @@
 const connection = require('../database/connection');
+const geo = require('geolocation-utils')
+
 
 module.exports = {
     async lista(req,res) {
-        const grupos = await connection('grupo').select('*');
+        const { Latitude, Longitude } = req.query;
+        let grupos = await connection('grupo').select('*');
 
-        // Fazer aqui a parte do Raio de 1 km.
+        grupos = grupos.filter(elemento => {
+            let distancia = geo.headingDistanceTo({
+                lat: Number(elemento.NR_Latitude),
+                lon: Number(elemento.NR_Longitude)
+            }, {
+                lat: Number(Latitude),
+                lon: Number(Longitude)
+            })
+
+            return distancia.distance < 1000
+        })
 
         return res.json(grupos);
     },
@@ -70,6 +83,8 @@ module.exports = {
                     NR_Latitude, 
                     NR_Longitude
                 })
+
+                return res.status(200).send("Cadastrado com sucesso.")
             }
         } catch (error) {
             return res.status(500).send({
