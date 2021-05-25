@@ -10,19 +10,22 @@ module.exports = {
     },
 
     async invitePrivado(req, res) {
-      const { ID_Grupo, ID_Entrada } = req.params;
+    
+      const { ID_Grupo, ID_Entrada } = req.query;
         
-      const grupo = await connection("grupo")
-      .where("SQ", ID_Grupo)
-      .select('*')
+        const grupo = await connection("grupo")
+        .where("SQ", ID_Grupo)
+        .select('*')
 
       
-        if (grupo.ID_Entrada === ID_Entrada) {
-            return res.json(grupo)
-        } else {
+        if (grupo[0].ID_Entrada === ID_Entrada) {
             return res.json({
-                error: "O ID de entrada inserido não é o cadastrado."
+                TXT_InviteGrupo: grupo[0].TXT_InviteGrupo
             })
+        } else {
+            return res.status(500).send({
+                error_msg: "O ID de entrada inserido não é o cadastrado."
+            }) 
         }
     },
 
@@ -33,17 +36,51 @@ module.exports = {
                 B_Privado, 
                 NR_Latitude, 
                 NR_Longitude } = req.body;
-        
-        const infos_cadastro = await connection('grupo').insert({
-            STR_NomeGrupo, 
-            STR_DescricaoGrupo, 
-            TXT_InviteGrupo, 
-            B_Privado, 
-            NR_Latitude, 
-            NR_Longitude
-        });
 
-        return res.json(infos_cadastro);
+        if (!(TXT_InviteGrupo.includes("https://chat.whatsapp.com/"))) {
+            return res.status(500).send({
+                error_msg: 'Não é um link de invite do WhatsApp.'
+            })
+        }
+        
+        try {
+            if (B_Privado === true) {
+                var crypto = require("crypto");
+                var ID_Entrada = crypto.randomBytes(5).toString('hex');
+                
+                await connection('grupo').insert({
+                    STR_NomeGrupo, 
+                    STR_DescricaoGrupo, 
+                    TXT_InviteGrupo, 
+                    B_Privado, 
+                    NR_Latitude, 
+                    NR_Longitude,
+                    ID_Entrada
+                }).returning("ID_Entrada").then(function (ID_Entrada) {
+                    return res.json({ 
+                        ID_Entrada: ID_Entrada[0] 
+                    });
+                  });
+            } else {
+                await connection('grupo').insert({
+                    STR_NomeGrupo, 
+                    STR_DescricaoGrupo, 
+                    TXT_InviteGrupo, 
+                    B_Privado, 
+                    NR_Latitude, 
+                    NR_Longitude
+                })
+            }
+        } catch (error) {
+            return res.status(500).send({
+                error_msg:'Não foi possível cadastrar seu grupo no momento :('
+            })
+        }
+        
+        
+        
+
+        
     }
 
 
