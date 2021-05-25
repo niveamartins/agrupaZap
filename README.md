@@ -32,14 +32,13 @@ Quando um grupo é dito como privado pelo criador, será mostrado para ele uma s
 * /api/grupo (post -> cria um laboratório novo)
 
 Para essa rota, o usuário deverá enviar um JSON com os seguintes dados:
-    {
-        "STR_NomeGrupo": "",
-        "STR_DescricaoGrupo": "",
-        "TXT_InviteGrupo": "",
-        "B_Privado": true,
-        "NR_Latitude": ,
-        "NR_Longitude": 
-    }
+
+      STR_NomeGrupo: (str),
+      STR_DescricaoGrupo: (str),
+      TXT_InviteGrupo: (str),
+      B_Privado: (boolean),
+      NR_Latitude: (float),
+      NR_Longitude: (float)
 
 OBS.: Está sendo checado se o Invite é realmente do WhatsApp. 
 
