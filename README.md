@@ -13,11 +13,11 @@ A porta estabelecida é a 3333, mas é possível mudar isso no arquivo server.js
 
 Além disso, é de extrema importância a criação de um banco de dados no pgAdmin. As configurações utilizadas no projeto foram:
       
-      **host** : '127.0.0.1',
-      **user** : 'user_db',
-      **password** : '123456',
-      **database** : 'agrupaZap',
-      **charset**: 'utf8'
+      host: '127.0.0.1',
+      user: 'user_db',
+      password: '123456',
+      database: 'agrupaZap',
+      charset: 'utf8'
 
 Porém, caso queira mudar, é possível em knexfile.js na parte de development.
 ## Rotas estabelecidas e possíveis requests
@@ -32,14 +32,14 @@ Quando um grupo é dito como privado pelo criador, será mostrado para ele uma s
 * /api/grupo (post -> cria um laboratório novo)
 
 Para essa rota, o usuário deverá enviar um JSON com os seguintes dados:
-{
-"STR_NomeGrupo": "",
-"STR_DescricaoGrupo": "",
-"TXT_InviteGrupo": "",
-"B_Privado": true,
-"NR_Latitude": ,
-"NR_Longitude": 
-}
+    {
+        "STR_NomeGrupo": "",
+        "STR_DescricaoGrupo": "",
+        "TXT_InviteGrupo": "",
+        "B_Privado": true,
+        "NR_Latitude": ,
+        "NR_Longitude": 
+    }
 
 OBS.: Está sendo checado se o Invite é realmente do WhatsApp. 
 
