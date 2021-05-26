@@ -45,7 +45,7 @@ Porém, caso queira mudar, é possível em knexfile.js na parte de development.
 
 Quando um grupo é dito como privado pelo criador, será mostrado para ele uma senha de acesso criada aleatoriamente pelo back para que entre usuários naquele raio de 1km e que tenham a senha de acesso. Restringindo, assim, a entrada de usuários não permitidos.
 
-* /api/grupo (post -> cria um laboratório novo)
+* /api/grupo (post -> cria um grupo novo)
 
 Para essa rota, o usuário deverá enviar um JSON com os seguintes dados:
 
@@ -80,7 +80,7 @@ Para rodar os testes é só rodar o seguinte comando:
       "pg": "^8.6.0"
       }
 
-## Back-end: React.js
+## Front-end: React.js
 
 ### Como configurar
 Para o frontend da aplicação foi escolhido o React.js e para servir:
@@ -104,6 +104,8 @@ Nessa página será possível cadastrar um grupo novo na sua localização.
 * /
 
 Página meramente para apresentação midiática do agrupaZap.
+
+
 ### Pacotes Adicionais
       "dependencies": {
             "axios": "^0.21.1",
