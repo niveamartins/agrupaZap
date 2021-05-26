@@ -50,6 +50,12 @@ module.exports = {
                 NR_Latitude, 
                 NR_Longitude } = req.body;
 
+        if (STR_NomeGrupo === undefined || STR_DescricaoGrupo === undefined || TXT_InviteGrupo === undefined || B_Privado === undefined|| NR_Latitude === undefined || NR_Longitude === undefined) {
+            return res.status(500).send({
+                error_msg:'Verifique os campos, não é possível cadastrar com campos vazios.'
+            })
+        }
+
         if (!(TXT_InviteGrupo.includes("https://chat.whatsapp.com/"))) {
             return res.status(500).send({
                 error_msg: 'Não é um link de invite do WhatsApp.'

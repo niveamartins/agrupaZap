@@ -1,6 +1,5 @@
 const express = require('express');
-
-const fs = require('fs'); 
+ 
 
 const cors = require('cors');
 
@@ -16,3 +15,5 @@ app.use(routes);
 
 
 app.listen(3333);
+
+module.exports = app
