@@ -19,6 +19,15 @@ module.exports = {
             return distancia.distance < 1000
         })
 
+        grupos.forEach(element => {
+            if (element.B_Privado === true) {
+                delete element.ID_Entrada
+                delete element.TXT_InviteGrupo
+            } else {
+                delete element.ID_Entrada
+            }
+        });
+
         return res.json(grupos);
     },
 
@@ -29,6 +38,12 @@ module.exports = {
         const grupo = await connection("grupo")
         .where("SQ", ID_Grupo)
         .select('*')
+
+        if (grupo[0] === undefined) {
+            return res.status(500).send({
+                error_msg: "Não há grupo cadastrado com esse ID."
+            }) 
+        }
 
       
         if (grupo[0].ID_Entrada === ID_Entrada) {

@@ -68,6 +68,22 @@ describe("Testes de bom funcionamento da API agrupaZap", function () {
     })
   });
 
+  it("Deve retornar o invite do grupo privado", function (done) {
+
+    chai.request(app)
+      .get("/api/invite?ID_Grupo=2&ID_Entrada=123456")
+      .end(function (err, res) {
+        if (err) done(err)
+        should(res).exist
+        should(res).have.property("status").and.equal(200);
+        should(res.body).have.property("TXT_InviteGrupo");
+
+        
+        done();
+    })
+  });
+  
+
   
 });
 
@@ -116,11 +132,26 @@ describe("Testes das validações", function () {
         })
         
       });
+
+      it("Deve retornar erro de grupo inexistente", function (done) {
+
+        chai.request(app)
+          .get("/api/invite?ID_Grupo=0&ID_Entrada=111111")
+          .end(function (err, res) {
+            if (err) done(err)
+            should(res).exist
+            should(res).have.property("status").and.equal(500);
+            should(res.body).have.property("error_msg").and.equal("Não há grupo cadastrado com esse ID.")
+
+            done();
+        })
+        
+      });
       
       it("Deve retornar erro de chave de acesso incorreta", function (done) {
 
         chai.request(app)
-          .get("/api/invite?ID_Grupo=5&ID_Entrada=111111")
+          .get("/api/invite?ID_Grupo=1&ID_Entrada=111111")
           .end(function (err, res) {
             if (err) done(err)
             should(res).exist
