@@ -29,7 +29,7 @@ Porém, caso queira mudar, é possível em knexfile.js na parte de development.
 
 Quando um grupo é dito como privado pelo criador, será mostrado para ele uma senha de acesso criada aleatoriamente pelo back para que entre usuários naquele raio de 1km e que tenham a senha de acesso. Restringindo, assim, a entrada de usuários não permitidos.
 
-* /api/grupo (post -> cria um laboratório novo)
+* /api/grupo (post -> cria um grupo novo)
 
 Para essa rota, o usuário deverá enviar um JSON com os seguintes dados:
 
