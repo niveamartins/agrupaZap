@@ -14,7 +14,7 @@ Além disso, dentro da pasta ./backend, você deverá rodar os seguintes comando
 Esse comando configurará a tabela 'grupo' no nosso BD.
 
 Caso você queira realizar os testes do mocha sem grandes problemas, é recomendado rodar o seguinte comando:
-* ` $ npm knex seed:run`
+* ` $ npx knex seed:run`
 
 Esse comando colocará 2 rows na nossa tabela para que seja possível testar todas as funcionalidades com os testes automatizados.
 
