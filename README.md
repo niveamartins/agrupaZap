@@ -2,6 +2,22 @@
 
 Projeto consiste em uma página web capaz de, por geolocalização, mostrar os grupos de WhatsApp criados próximos de onde você está no momento, num raio de 1km, com um link para entrar no grupo. Caso você seja o cadastrante, é possível selecionar que o grupo é privado e, assim, para os outros só será possível visualizar o link de invite após confirmar a chave de acesso gerada pelo Backend.
 
+
+## BD: Postgres
+
+### Como configurar
+Dentro do pgAdmin, será necessário criar um novo database chamado "agrupaZap" e um usuário chamado "user_db" com senha 123456. Porém, caso você não queira realizar esse passo, mais para frente será possível alterar essas configurações no backend.
+
+Além disso, dentro da pasta ./backend, você deverá rodar os seguintes comandos:
+* ` $ npx knex migrate:latest`
+
+Esse comando configurará a tabela 'grupo' no nosso BD.
+
+Caso você queira realizar os testes do mocha sem grandes problemas, é recomendado rodar o seguinte comando:
+* ` $ npm knex seed:run`
+
+Esse comando colocará 2 rows na nossa tabela para que seja possível testar todas as funcionalidades com os testes automatizados.
+
 ## Back-end: Node.js
 
 ### Como configurar
@@ -46,6 +62,7 @@ OBS.: Está sendo checado se o Invite é realmente do WhatsApp.
 
 Para rodar os testes é só rodar o seguinte comando:
 * ` $ npm test`
+
 
 ### Pacotes Adicionais
 
