@@ -76,10 +76,12 @@ A porta estabelecida é a 3000.
 ### Rotas estabelecidas
 
 * /procurar 
+
 Nessa página serão exibidos todos os grupos criados em um raio de 1km. Para entrar em algum, basta apertar nele que, ou aparecerá para colocar a senha ou direto o link para entrar.
 
 
 * /cadastrar
+
 Nessa página será possível cadastrar um grupo novo na sua localização.
 
 * /
