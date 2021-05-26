@@ -63,7 +63,7 @@ Para rodar os testes é só rodar o seguinte comando:
       "pg": "^8.6.0"
       }
 
-## Back-end: React.js
+## Front-end: React.js
 
 ### Como configurar
 Para o frontend da aplicação foi escolhido o React.js e para servir:
@@ -87,6 +87,8 @@ Nessa página será possível cadastrar um grupo novo na sua localização.
 * /
 
 Página meramente para apresentação midiática do agrupaZap.
+
+
 ### Pacotes Adicionais
       "dependencies": {
             "axios": "^0.21.1",
