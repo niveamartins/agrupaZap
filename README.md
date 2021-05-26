@@ -2,14 +2,14 @@
 
 Projeto consiste em uma página web capaz de, por geolocalização, mostrar os grupos de WhatsApp criados próximos de onde você está no momento, num raio de 1km, com um link para entrar no grupo. Caso você seja o cadastrante, é possível selecionar que o grupo é privado e, assim, para os outros só será possível visualizar o link de invite após confirmar a chave de acesso gerada pelo Backend.
 
-## Como configurar
+## Back-end: Node.js
 
-### Back-end: Node.js
+### Como configurar
 Para o backend da aplicação foi escolhido o Node.js e para servir:
 * ` $ npm install`
 * ` $ npm start`
 
-A porta estabelecida é a 3333, mas é possível mudar isso no arquivo server.js.
+A porta estabelecida é a 3333, mas é possível mudar isso no arquivo server.js. Caso ela seja alterada, faz-se necessário a alteração no front também dentro do arquivo instance.js.
 
 Além disso, é de extrema importância a criação de um banco de dados no pgAdmin. As configurações utilizadas no projeto foram:
       
@@ -20,7 +20,7 @@ Além disso, é de extrema importância a criação de um banco de dados no pgAd
       charset: 'utf8'
 
 Porém, caso queira mudar, é possível em knexfile.js na parte de development.
-## Rotas estabelecidas e possíveis requests
+### Rotas estabelecidas e possíveis requests
 
 * /api/grupos?Latitude=&Longitude= (get -> retorna uma lista com todos os grupos cadastrados em um raio de 1km de distância.)
 
@@ -42,10 +42,59 @@ Para essa rota, o usuário deverá enviar um JSON com os seguintes dados:
 
 OBS.: Está sendo checado se o Invite é realmente do WhatsApp. 
 
-## Pacotes Adicionais
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "geolocation-utils": "^1.2.5",
-    "knex": "^0.95.6",
-    "pg": "^8.6.0"
+### Rodando os testes
+
+Para rodar os testes é só rodar o seguinte comando:
+* ` $ npm test`
+
+### Pacotes Adicionais
+
+      "devDependencies": {
+      "chai": "^4.3.4",
+      "chai-http": "^4.3.0",
+      "nodemon": "^2.0.7",
+      "should": "^13.2.3"
+      },
+      "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "geolocation-utils": "^1.2.5",
+      "knex": "^0.95.6",
+      "pg": "^8.6.0"
+      }
+
+## Back-end: React.js
+
+### Como configurar
+Para o frontend da aplicação foi escolhido o React.js e para servir:
+* ` $ npm install`
+* ` $ npm start`
+
+A porta estabelecida é a 3000.
+
+
+### Rotas estabelecidas
+
+* /procurar 
+Nessa página serão exibidos todos os grupos criados em um raio de 1km. Para entrar em algum, basta apertar nele que, ou aparecerá para colocar a senha ou direto o link para entrar.
+
+
+* /cadastrar
+Nessa página será possível cadastrar um grupo novo na sua localização.
+
+* /
+
+Página meramente para apresentação midiática do agrupaZap.
+### Pacotes Adicionais
+      "dependencies": {
+            "axios": "^0.21.1",
+            "bootstrap": "^4.6.0",
+            "node-sass": "^6.0.0",
+            "react": "^17.0.2",
+            "react-bootstrap": "^1.6.0",
+            "react-dom": "^17.0.2",
+            "react-router-dom": "^5.2.0",
+            "react-scripts": "4.0.3",
+            "web-vitals": "^1.1.2"
+      }
 

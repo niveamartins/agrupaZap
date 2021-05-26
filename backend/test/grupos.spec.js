@@ -115,5 +115,20 @@ describe("Testes das validações", function () {
             done();
         })
         
-      }); 
+      });
+      
+      it("Deve retornar erro de chave de acesso incorreta", function (done) {
+
+        chai.request(app)
+          .get("/api/invite?ID_Grupo=5&ID_Entrada=111111")
+          .end(function (err, res) {
+            if (err) done(err)
+            should(res).exist
+            should(res).have.property("status").and.equal(500);
+            should(res.body).have.property("error_msg").and.equal("O ID de entrada inserido não é o cadastrado.")
+
+            done();
+        })
+        
+      });
 })
